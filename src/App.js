@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from "react-router-dom"; 
 import './App.css';
+import styled from "styled-components";
+
+import MyHeader from './components/MyHeader';
+import MyHome from './page/MyHome';
+import MyNav from "./components/MyNav";
+import MyAside from "./components/MyAside";
+import MyCalendar from "./page/MyCalendar";
+import MyCalendarList from "./page/MyCalendarList";
+
+const Container = styled.div`
+  display: flex;
+  height: 90vh;
+`
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <MyHeader/>
+        <Container>
+          <MyNav />
+          <Routes>         
+            <Route path='/' element={<MyHome />}></Route>
+            <Route path="/calendarlist" element={<MyCalendarList/>}></Route>
+            <Route path="/calendar" element={<MyCalendar/>}></Route>
+          </Routes>
+          <MyAside/>
+        </Container>
+      </div>
+    </BrowserRouter>
   );
 }
 
